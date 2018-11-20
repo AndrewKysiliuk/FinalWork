@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row class="header_app">
+    <div class="user">
+      <img class="user__photo" src="../../assets/default_user.png" alt="img" (click)="editProfile()">
+      <span class="user__name" (click)="editProfile()">user name</span>
+    </div>
+    {{currentDate | date : 'EE dd HH:mm:ss':'':'uk'}}
+    <button class="user__log" mat-raised-button color="warn">Log Out <mat-icon class="example-icon">exit_to_app</mat-icon></button>
+  </mat-toolbar-row>
+</mat-toolbar>
