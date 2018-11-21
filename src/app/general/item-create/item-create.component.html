@@ -1,3 +1,62 @@
-<p>
-  item-create works!
-</p>
+<div class="container">
+  <div class="item-title">
+    <div class="item-title__image">
+      <div class="image__item">
+        <img mat-card-image src="../../../assets/default_img.svg" alt="">
+      </div>
+      <button mat-raised-button color="primary">Додати фото</button>
+    </div>
+    <div class="item-title__info">
+      <div class="info__param">
+        <mat-form-field appearance="standard" class="custom-field">
+          <mat-label>Назва рецепту</mat-label>
+          <input matInput placeholder="Рецепт" [formControl]="title" required>
+          <mat-error *ngIf="title.invalid">{{getErrorMessage("title")}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="standard" class="custom-field">
+          <mat-select placeholder="Категорія рецепту" [(ngModel)]="itemCategory" name="food" required>
+            <mat-option *ngFor="let item of category" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="title.invalid">{{getErrorMessage("select")}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="info__components">
+        <h1>Інгредієнти:</h1>
+        <form class="components__form">
+          <div *ngFor ="let item of array; index as i">
+            <div *ngIf="templateArr[i]" class="form__input">
+              <div>
+                <mat-form-field appearance="standard">
+                  <mat-label>Інгредієнт</mat-label>
+                  <input matInput placeholder="Інгредієнт" [(ngModel)]="array[i].name" [name]='"name"+i' required>
+                  <mat-error *ngIf="title.invalid">{{getErrorMessage("title")}}</mat-error>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="standard">
+                  <mat-label>К-сть</mat-label>
+                  <input type="number" matInput placeholder="К-сть" [(ngModel)]="array[i].count" [name]='"count"+i' required>
+                  <mat-error *ngIf="title.invalid">{{getErrorMessage("count")}}</mat-error>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="standard">
+                  <mat-select placeholder="Од. Вим." [(ngModel)]="array[i].type" name="food" required>
+                    <mat-option *ngFor="let food of types" [value]="food">
+                      {{food}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="title.invalid">{{getErrorMessage("select")}}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </form>
+        <button mat-raised-button color="primary" (click)="addTemplate()">Додати інгредієнт</button>
+      </div>
+    </div>
+  </div>
+  <div class="item-content"></div>
+</div>

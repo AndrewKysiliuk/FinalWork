@@ -1,3 +1,36 @@
-<p>
-  item works!
-</p>
+<div class="item-card">
+  <mat-card>
+    <mat-card-title class="mat-card-title custom-card">
+      <mat-toolbar color="primary" class="custom-toolbar">
+        <mat-toolbar-row>
+          <div class="item-card__header">
+            <span>Title</span>
+            <div>
+              <mat-icon>mode_edit</mat-icon>
+              <mat-icon color="warn">delete</mat-icon>
+            </div>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </mat-card-title>
+    <img mat-card-image src="https://img.grouponcdn.com/deal/jaSuZT7oxkai5XziRxWW/V3-4272x2823/v1/c700x420.jpg" alt="">
+    <mat-card-content>
+      <p>
+        {{text | truncatePipe:[200]}}
+      </p>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-footer>
+      <div class="item-card__footer">
+        <div>
+          <mat-icon>face</mat-icon>
+          <span>user name</span>
+        </div>
+        <div>
+          <mat-icon>date_range</mat-icon>
+          <span>16.12.2015</span>
+        </div>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</div>

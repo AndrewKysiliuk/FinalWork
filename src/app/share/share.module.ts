@@ -9,7 +9,9 @@ import {
   MatDialogModule,
   MatTooltipModule,
   MatSnackBarModule,
+  MatDividerModule, MatFormFieldModule, MatInputModule, MatSelectModule,
 } from '@angular/material';
+import {TruncatePipePipe} from './Pipe/truncate-pipe.pipe';
 
 const materialModule = [
   MatIconModule,
@@ -20,13 +22,17 @@ const materialModule = [
   MatTooltipModule,
   MatSnackBarModule,
   MatDialogModule,
+  MatDividerModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [ TruncatePipePipe ],
   imports: [
     CommonModule, materialModule
   ],
-  exports: [ materialModule, ],
+  exports: [ materialModule, TruncatePipePipe ],
 })
 export class ShareModule { }

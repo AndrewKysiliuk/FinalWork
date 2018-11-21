@@ -9,10 +9,9 @@ import { ShareModule } from './share/share.module';
 import { HttpClientService } from './Services/HttpClientService';
 import { AuthService } from './Services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { GeneralComponent } from './general/general.component';
-import { ItemComponent } from './general/item/item.component';
-import { ItemCreateComponent } from './general/item-create/item-create.component';
-import { ItemPageComponent } from './general/item-page/item-page.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {GeneralModule} from './general/general.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 registerLocaleData(localeUk, 'uk');
 
@@ -20,13 +19,14 @@ registerLocaleData(localeUk, 'uk');
   declarations: [
     AppComponent,
     HeaderComponent,
-    GeneralComponent,
-    ItemComponent,
-    ItemCreateComponent,
-    ItemPageComponent
   ],
   imports: [
-    BrowserModule, ShareModule, HttpClientModule
+    BrowserModule,
+    ShareModule,
+    HttpClientModule,
+    FlexLayoutModule,
+    GeneralModule,
+    BrowserAnimationsModule
   ],
   providers: [HttpClientService, AuthService, ],
   bootstrap: [AppComponent]
