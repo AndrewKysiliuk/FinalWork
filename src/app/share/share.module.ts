@@ -9,9 +9,10 @@ import {
   MatDialogModule,
   MatTooltipModule,
   MatSnackBarModule,
-  MatDividerModule, MatFormFieldModule, MatInputModule, MatSelectModule,
+  MatDividerModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatSidenavModule,
 } from '@angular/material';
 import {TruncatePipePipe} from './Pipe/truncate-pipe.pipe';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const materialModule = [
   MatIconModule,
@@ -26,13 +27,16 @@ const materialModule = [
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
+  MatSidenavModule
 ];
 
 @NgModule({
   declarations: [ TruncatePipePipe ],
   imports: [
-    CommonModule, materialModule
+    CommonModule, materialModule, FormsModule,
+    ReactiveFormsModule,
   ],
-  exports: [ materialModule, TruncatePipePipe ],
+  exports: [ materialModule, TruncatePipePipe, FormsModule,
+    ReactiveFormsModule ],
 })
 export class ShareModule { }

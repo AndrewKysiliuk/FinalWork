@@ -1,0 +1,24 @@
+<div class="auth">
+  <form [formGroup]="form">
+    <mat-card class="box">
+      <div class="box-header">
+        <button mat-fab color="warn"><mat-icon>exit_to_app</mat-icon></button>
+        <a mat-button >Не маєте облікового запису? Зареєструйтеся зараз!</a>
+      </div>
+      <mat-card-content class="box-content">
+        <mat-card class="box-content__card">
+          <span>Авторизація</span>
+          <mat-form-field>
+            <input matInput placeholder="Email..." type="email" formControlName="email" name="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage('mail')}}</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password..." type="password" formControlName="pass" name="pass"  required>
+            <mat-error *ngIf="pass.invalid">{{getErrorMessage('pass')}}</mat-error>
+          </mat-form-field>
+        </mat-card>
+        <button mat-raised-button color="primary" type="submit">Увійти</button>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

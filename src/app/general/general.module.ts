@@ -5,7 +5,6 @@ import { ItemCreateComponent } from './item-create/item-create.component';
 import { ItemPageComponent } from './item-page/item-page.component';
 import { GeneralComponent } from './general.component';
 import { ShareModule } from '../share/share.module';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,8 +16,6 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     ShareModule,
-    FormsModule,
-    ReactiveFormsModule
   ],
   exports: [
     ItemComponent,

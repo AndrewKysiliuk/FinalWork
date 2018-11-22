@@ -2,12 +2,12 @@
   <div class="item-title">
     <div class="item-title__image">
       <div class="image__item">
-        <img mat-card-image src="../../../assets/default_img.svg" alt="">
+        <img  src="../../../assets/default_img.svg" alt="">
       </div>
       <button mat-raised-button color="primary">Додати фото</button>
     </div>
     <div class="item-title__info">
-      <div class="info__param">
+      <form class="info__param" #titleForm = "ngForm">
         <mat-form-field appearance="standard" class="custom-field">
           <mat-label>Назва рецепту</mat-label>
           <input matInput placeholder="Рецепт" [formControl]="title" required>
@@ -21,29 +21,29 @@
           </mat-select>
           <mat-error *ngIf="title.invalid">{{getErrorMessage("select")}}</mat-error>
         </mat-form-field>
-      </div>
+      </form>
       <div class="info__components">
         <h1>Інгредієнти:</h1>
-        <form class="components__form">
-          <div *ngFor ="let item of array; index as i">
-            <div *ngIf="templateArr[i]" class="form__input">
+        <form class="components__form" #componentForm = "ngForm">
+          <div *ngFor ="let item of component; index as i">
+            <div *ngIf="componentArr[i]" class="form__input">
               <div>
                 <mat-form-field appearance="standard">
                   <mat-label>Інгредієнт</mat-label>
-                  <input matInput placeholder="Інгредієнт" [(ngModel)]="array[i].name" [name]='"name"+i' required>
+                  <input matInput placeholder="Інгредієнт" [(ngModel)]="component[i].name" [name]='"name"+i' required>
                   <mat-error *ngIf="title.invalid">{{getErrorMessage("title")}}</mat-error>
                 </mat-form-field>
               </div>
               <div>
                 <mat-form-field appearance="standard">
                   <mat-label>К-сть</mat-label>
-                  <input type="number" matInput placeholder="К-сть" [(ngModel)]="array[i].count" [name]='"count"+i' required>
+                  <input type="number" matInput placeholder="К-сть" [(ngModel)]="component[i].count" [name]='"count"+i' required>
                   <mat-error *ngIf="title.invalid">{{getErrorMessage("count")}}</mat-error>
                 </mat-form-field>
               </div>
               <div>
                 <mat-form-field appearance="standard">
-                  <mat-select placeholder="Од. Вим." [(ngModel)]="array[i].type" name="food" required>
+                  <mat-select placeholder="Од. Вим." [(ngModel)]="component[i].type" name="food" required>
                     <mat-option *ngFor="let food of types" [value]="food">
                       {{food}}
                     </mat-option>
@@ -54,9 +54,40 @@
             </div>
           </div>
         </form>
-        <button mat-raised-button color="primary" (click)="addTemplate()">Додати інгредієнт</button>
+        <button mat-raised-button color="primary" (click)="addTemplate('component')">Додати інгредієнт</button>
       </div>
     </div>
   </div>
-  <div class="item-content"></div>
+  <hr>
+  <div class="item-content">
+    <h1>Спосіб приготування:</h1>
+    <form class="content__form" #prepareForm = "ngForm">
+      <div *ngFor ="let item of prepare; index as i">
+        <div *ngIf="cookArr[i]" class="form__data">
+          <div>
+            <img src="../../../assets/default_img.svg" alt="">
+          </div>
+          <div>
+            <mat-form-field>
+              <textarea matInput placeholder="Приготування..." [(ngModel)]="prepare[i].text" [name]='"textArea"+i' required></textarea>
+              <mat-error *ngIf="title.invalid">{{getErrorMessage("title")}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </form>
+    <button mat-raised-button color="primary" (click)="addTemplate('prepare')">Додати пункт</button>
+    <div class="description">
+      <div class="description__text">
+        <mat-form-field>
+          <textarea matInput placeholder="Опишіть страву..." [(ngModel)]="description" name="description" required></textarea>
+          <mat-error *ngIf="title.invalid">{{getErrorMessage("title")}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="description__button">
+        <button [disabled]="prepareForm.invalid || componentForm.invalid || titleForm.invalid" mat-raised-button color="primary">Зберегти новий рецепт</button>
+        <button mat-raised-button color="warn">Скасувати</button>
+      </div>
+    </div>
+  </div>
 </div>

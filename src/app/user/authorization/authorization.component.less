@@ -1,0 +1,55 @@
+.auth{
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  form{
+    width: 415px;
+  }
+}
+.box{
+  padding: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.29);
+}
+
+.box-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #283593;
+  color: #fff;
+  padding: 40px 0;
+}
+.box-content{
+  background: #fff;
+  position: relative;
+  height: 190px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  button{
+    bottom: 16px;
+    width: 40%;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+}
+.box-content__card{
+  position: absolute;
+  top: -34px;
+  left: 34px;
+  right: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.29);
+  mat-form-field{
+    width: 100%;
+  }
+  span{
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}

@@ -10,12 +10,19 @@ import { FormControl, Validators } from '@angular/forms';
 export class ItemCreateComponent implements OnInit {
 
   title = new FormControl('', [Validators.required]);
-  array: Components[] = [];
-  templateArr: boolean[] = [];
+
+  component: Components[] = [];
+  componentArr: boolean[] = [];
+
+  prepare: Prepare[] = [];
+  cookArr: boolean[] = [];
+
   types: string[] = ['гр', 'кг', 'мл', 'л', 'ч. лож', 'ст. лож.', 'шт'];
   category: string[] = ['Алкогольні напої', 'Без-алкогольні напої', 'Супи', 'Салати',
     'М\'ясні страви', 'Вегетеріанські страви', 'Піца', 'Суші', 'Десерти'];
+
   itemCategory;
+  description;
 
   constructor() { }
 
@@ -37,21 +44,41 @@ export class ItemCreateComponent implements OnInit {
     return this.title.hasError('required') ? 'Поле назви неможе бути порожнім' : '';
   }
 
-  addTemplate() {
-    for (let i = 0; i < this.templateArr.length; i++) {
-      if (!this.templateArr[i]) {
-        this.templateArr[i] = true;
+  addTemplate(type: string) {
+    switch (type) {
+      case 'prepare': {
+        for (let i = 0; i < this.cookArr.length; i++) {
+          if (!this.cookArr[i]) {
+            this.cookArr[i] = true;
+            break;
+          }
+        }
         break;
       }
+      case
+        'component'
+      :
+        {
+          for (let i = 0; i < this.componentArr.length; i++) {
+            if (!this.componentArr[i]) {
+              this.componentArr[i] = true;
+              break;
+            }
+          }
+          break;
+        }
+      }
     }
-  }
 
   ngOnInit() {
     for (let i = 0; i < 10; i++) {
-      this.array.push(new Components());
-      this.templateArr.push(false);
+      this.component.push(new Components());
+      this.prepare.push(new Prepare());
+      this.componentArr.push(false);
+      this.cookArr.push(false);
     }
-    this.templateArr[0] = true;
+    this.componentArr[0] = true;
+    this.cookArr[0] = true;
   }
 
 }
@@ -61,4 +88,9 @@ class Components {
               public count: number = null,
               public type: string = '') {}
 
+}
+
+class Prepare {
+  constructor(public url: string = '',
+              public text: string = '') {}
 }

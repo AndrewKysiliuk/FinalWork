@@ -10,8 +10,10 @@ import { HttpClientService } from './Services/HttpClientService';
 import { AuthService } from './Services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {GeneralModule} from './general/general.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { GeneralModule } from './general/general.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthorizationComponent } from './user/authorization/authorization.component';
+import { RegisterComponent } from './user/register/register.component';
 
 registerLocaleData(localeUk, 'uk');
 
@@ -19,6 +21,8 @@ registerLocaleData(localeUk, 'uk');
   declarations: [
     AppComponent,
     HeaderComponent,
+    AuthorizationComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
