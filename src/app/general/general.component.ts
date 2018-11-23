@@ -6,8 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./general.component.less']
 })
 export class GeneralComponent implements OnInit {
+  category: string [] = ['Алкогольні напої', 'Безалкогольні напої', 'Салати', 'Перші страви', 'Піца', 'Суші', ];
 
-  constructor() { }
+  addCategory(name: string) {
+    this.category.push(name);
+  }
+
 
   ngOnInit() {
   }

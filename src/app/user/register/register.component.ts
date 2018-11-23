@@ -44,8 +44,7 @@ export class RegisterComponent implements OnInit {
       }
       case 'pass': {
         return this.password.hasError('required') ? 'Поле пароль обов\'язкове' :
-          this.password.hasError('pattern') ? 'Неправильно введений пароль, поле пароль має складатися з  ' +
-            'мінімум 8 символів, а також має містити принаймні ' +
+          this.password.hasError('pattern') ? 'Пароль має складатися з мінімум 8 символів, містити принаймні ' +
             '1 маленьку букву, 1 число та 1 велику букву або спец. символ (!@#$%...)' : '';
         break;
       }

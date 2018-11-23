@@ -61,7 +61,7 @@
   justify-content: space-between;
   div {
     &:first-child {
-      width: 75%;
+      width: 70%;
       mat-form-field{
         width: 100%;
       }
@@ -72,17 +72,20 @@
         width: 100%;
       }
     }
-    &:last-child {
+    &:nth-child(3) {
       width: 10%;
       mat-form-field{
         width: 100%;
       }
     }
+    &:last-child{
+      width: 5%;
+    }
   }
 }
 /*CONTENT*/
 .item-content{
-  padding: 0 75px;
+  padding: 0 45px;
 }
 .form__data{
   margin-top: -10px;
@@ -101,7 +104,7 @@
         width: 100%;
       }
     }
-    &:last-child {
+    &:nth-child(2) {
       width: 80%;
       mat-form-field{
         width: 100%;
@@ -109,6 +112,10 @@
           height: 150px;
         }
       }
+    }
+    &:nth-child(3) {
+      padding: 0;
+      width: 1%;
     }
   }
 }

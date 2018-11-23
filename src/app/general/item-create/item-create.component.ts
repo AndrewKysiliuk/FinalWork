@@ -12,19 +12,18 @@ export class ItemCreateComponent implements OnInit {
   title = new FormControl('', [Validators.required]);
 
   component: Components[] = [];
-  componentArr: boolean[] = [];
-
   prepare: Prepare[] = [];
-  cookArr: boolean[] = [];
 
   types: string[] = ['гр', 'кг', 'мл', 'л', 'ч. лож', 'ст. лож.', 'шт'];
   category: string[] = ['Алкогольні напої', 'Без-алкогольні напої', 'Супи', 'Салати',
     'М\'ясні страви', 'Вегетеріанські страви', 'Піца', 'Суші', 'Десерти'];
-
-  itemCategory;
   description;
+  itemCategory;
 
-  constructor() { }
+  constructor() {
+    this.prepare.push(new Prepare());
+    this.component.push(new Components());
+  }
 
   getErrorMessage(message: string) {
     switch (message) {
@@ -47,50 +46,39 @@ export class ItemCreateComponent implements OnInit {
   addTemplate(type: string) {
     switch (type) {
       case 'prepare': {
-        for (let i = 0; i < this.cookArr.length; i++) {
-          if (!this.cookArr[i]) {
-            this.cookArr[i] = true;
-            break;
-          }
-        }
+          this.prepare.push(new Prepare());
         break;
       }
-      case
-        'component'
-      :
-        {
-          for (let i = 0; i < this.componentArr.length; i++) {
-            if (!this.componentArr[i]) {
-              this.componentArr[i] = true;
-              break;
-            }
-          }
+      case 'component' : {
+          this.component.push(new Components());
           break;
         }
       }
-    }
-
-  ngOnInit() {
-    for (let i = 0; i < 10; i++) {
-      this.component.push(new Components());
-      this.prepare.push(new Prepare());
-      this.componentArr.push(false);
-      this.cookArr.push(false);
-    }
-    this.componentArr[0] = true;
-    this.cookArr[0] = true;
   }
+  delTemplate(type: string, index: number) {
+    switch (type) {
+      case 'prepare': {
+        this.prepare.splice(index, 1);
+        break;
+      }
+      case 'component' : {
+        this.component.splice(index, 1);
+        break;
+      }
+    }
+  }
+
+  ngOnInit() {}
 
 }
 
-class Components {
+export class Components {
   constructor(public name: string = '',
               public count: number = null,
               public type: string = '') {}
-
 }
 
-class Prepare {
+export class Prepare {
   constructor(public url: string = '',
               public text: string = '') {}
 }

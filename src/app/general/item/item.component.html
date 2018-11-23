@@ -1,6 +1,6 @@
 <div class="item-card">
-  <mat-card>
-    <mat-card-title class="mat-card-title custom-card">
+  <mat-card class="custom-card">
+    <mat-card-title class="mat-card-title custom-title">
       <mat-toolbar color="primary" class="custom-toolbar">
         <mat-toolbar-row>
           <div class="item-card__header">
@@ -13,14 +13,14 @@
         </mat-toolbar-row>
       </mat-toolbar>
     </mat-card-title>
-    <img mat-card-image src="https://img.grouponcdn.com/deal/jaSuZT7oxkai5XziRxWW/V3-4272x2823/v1/c700x420.jpg" alt="">
-    <mat-card-content>
+    <img class="item-card__img" src="https://img.grouponcdn.com/deal/jaSuZT7oxkai5XziRxWW/V3-4272x2823/v1/c700x420.jpg" alt="" >
+    <mat-card-content class="item-card__description">
       <p>
-        {{text | truncatePipe:[200]}}
+        {{text | truncatePipe:[100]}}
       </p>
     </mat-card-content>
     <mat-divider></mat-divider>
-    <mat-card-footer>
+    <mat-card-footer class="custom-footer">
       <div class="item-card__footer">
         <div>
           <mat-icon>face</mat-icon>
