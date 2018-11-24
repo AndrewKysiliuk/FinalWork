@@ -3,7 +3,7 @@
     <mat-card class="box">
       <div class="box-header">
         <button mat-fab color="warn"><mat-icon>exit_to_app</mat-icon></button>
-        <a mat-button >Не маєте облікового запису? Зареєструйтеся зараз!</a>
+        <a mat-button routerLink="/registration" >Не маєте облікового запису? Зареєструйтеся зараз!</a>
       </div>
       <mat-card-content class="box-content">
         <mat-card class="box-content__card">
@@ -17,7 +17,7 @@
             <mat-error *ngIf="pass.invalid">{{getErrorMessage('pass')}}</mat-error>
           </mat-form-field>
         </mat-card>
-        <button mat-raised-button color="primary" type="submit">Увійти</button>
+        <button mat-raised-button color="primary" type="submit" (click)="authorization()">Увійти</button>
       </mat-card-content>
     </mat-card>
   </form>

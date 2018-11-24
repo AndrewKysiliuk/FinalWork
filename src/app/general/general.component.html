@@ -1,49 +1,19 @@
+<app-header></app-header>
 <mat-drawer-container class="side-container">
   <mat-drawer mode="side" opened class="side-nav">
    <div class="side-nav__category">
      <cdk-virtual-scroll-viewport itemSize="50" class="category__item">
+       <div>
+         <a mat-button (click)="showCategoryItems('qwerty')">Останні записи</a>
+       </div>
        <div *ngFor="let item of category">
-         <a mat-button>{{item}}</a>
+         <a mat-button (click)="showCategoryItems(item.value)">{{item.title}}</a>
        </div>
      </cdk-virtual-scroll-viewport>
      <button mat-raised-button color="primary" (click)="addCategory('new Category')">Додати категорію</button>
    </div>
   </mat-drawer>
   <mat-drawer-content class="side-content">
-   <div class="side-content__items">
-     <div class="new__items">
-       <mat-icon class="custom-icon">add_circle_outline</mat-icon>
-     </div>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-     <app-item></app-item>
-   </div>
+    <app-item-list></app-item-list>
   </mat-drawer-content>
 </mat-drawer-container>
