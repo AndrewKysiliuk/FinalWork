@@ -9,7 +9,7 @@ const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home'
+    redirectTo: 'authorization'
   },
   {
     path: 'authorization',

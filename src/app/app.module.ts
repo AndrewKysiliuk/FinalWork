@@ -14,6 +14,7 @@ import { AuthorizationComponent } from './user/authorization/authorization.compo
 import { RegisterComponent } from './user/register/register.component';
 import { AppRoutingModule } from './routers/app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {AuthRegService} from './Services/auth-reg.service';
 
 registerLocaleData(localeUk, 'uk');
 
@@ -32,7 +33,7 @@ registerLocaleData(localeUk, 'uk');
     BrowserAnimationsModule,
     AppRoutingModule,
   ],
-  providers: [HttpClientService, AuthService, ],
+  providers: [HttpClientService, AuthService, AuthRegService, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -27,7 +27,7 @@
     "flex-layout-srcs": "github:angular/flex-layout",
     "hammerjs": "^2.0.8",
     "less": "^3.8.1",
-    "rxjs": "~6.3.3",
+    "rxjs": "^6.3.3",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

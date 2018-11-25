@@ -9,10 +9,18 @@ export class HttpClientService {
   constructor(private http: HttpClient) {
   }
 
-  private httpUrl = 'http://localhost:3000/gallery';
+  private httpUrl = 'http://localhost:3000/home';
 
-  httpGet(): Observable<{}[]> {
-    return this.http.get<{}[]>(this.httpUrl);
+  httpGet(key: string, category: string = '', id: number = null): Observable<{}> {
+    if (category) {
+      if (id) {
+        return this.http.get<{}>(`${this.httpUrl}/${key}/${category}/${id}`);
+      } else {
+        return this.http.get<{}[]>(`${this.httpUrl}/${key}/${category}`);
+      }
+    } else {
+      return this.http.get<{}[]>(`${this.httpUrl}/${key}`);
+    }
   }
 
   newRecord(val: {}): Observable<{}> {
@@ -22,8 +30,5 @@ export class HttpClientService {
   delRecord(id: number): Observable<{}> {
     const delUrl = `${this.httpUrl}/${id}`;
     return this.http.delete(delUrl);
-  }
-  getById(id: number) {
-    return this.http.get<{}>(`${this.httpUrl}/${id}`);
   }
 }
