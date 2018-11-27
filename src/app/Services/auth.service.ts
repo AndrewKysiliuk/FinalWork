@@ -1,28 +1,31 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  localStorageId = 'angularFinalProject';
 
-  update(status: boolean) {
-    localStorage.setItem('userIn', JSON.stringify({value: status}));
+  constructor() {
   }
 
-  getStatus(): Observable<boolean> {
-    const ls = localStorage.getItem('userIn');
-    let status = false;
-    if (ls) {
-      if (JSON.parse(ls).value) {
-        status = true;
-      }
-    } else {
-      localStorage.setItem('userIn', JSON.stringify({value: status}));
-    }
+  create(key: string) {
+    localStorage.setItem(this.localStorageId, JSON.stringify({'key': key}));
+  }
 
-    return of(status);
+  getKey() {
+    const ls = localStorage.getItem(this.localStorageId);
+    const data = JSON.parse(ls);
+    return data.key;
+  }
+
+  getStatus(): boolean {
+    const ls = localStorage.getItem(this.localStorageId);
+    return ls ? true : false;
+  }
+
+  remove() {
+    localStorage.removeItem(this.localStorageId);
   }
 }

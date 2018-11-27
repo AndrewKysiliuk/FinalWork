@@ -27,7 +27,7 @@
             <mat-error *ngIf="password.invalid">{{getErrorMessage('pass')}}</mat-error>
           </mat-form-field>
         </mat-card>
-        <button [disabled]="regForm.invalid" mat-raised-button color="primary" type="submit">Зареєструватися</button>
+        <button [disabled]="regForm.invalid" mat-raised-button color="primary" type="submit" (click)="registration()">Зареєструватися</button>
       </mat-card-content>
     </mat-card>
   </form>

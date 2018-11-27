@@ -3,17 +3,22 @@
   <mat-drawer mode="side" opened class="side-nav">
    <div class="side-nav__category">
      <cdk-virtual-scroll-viewport itemSize="50" class="category__item">
-       <div>
-         <a mat-button (click)="showCategoryItems('qwerty')">Останні записи</a>
-       </div>
-       <div *ngFor="let item of category">
-         <a mat-button (click)="showCategoryItems(item.value)">{{item.title}}</a>
+       <div *ngFor="let item of category; index as i">
+        <div *ngIf="i === 0; else other">
+          <a mat-button [routerLink]="item.category" routerLinkActive = "active"
+               [routerLinkActiveOptions]="{exact:true}">
+            {{item.title}}
+          </a>
+        </div>
+         <ng-template #other>
+            <a mat-button [routerLink]="item.category" routerLinkActive = "active">{{item.title}}</a>
+          </ng-template>
        </div>
      </cdk-virtual-scroll-viewport>
      <button mat-raised-button color="primary" (click)="addCategory('new Category')">Додати категорію</button>
    </div>
   </mat-drawer>
   <mat-drawer-content class="side-content">
-    <app-item-list></app-item-list>
+    <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>

@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../classes/user';
+import { HttpAuthRegService } from '../../Services/http-auth-reg.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.less', '../authorization/authorization.component.less']
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.less', '../authorization/authorization.component.less']
 })
-export class RegisterComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
+
+  user: User = new User();
 
   passPattern = '^(?=.*\\d)(?=.*[a-z])((?=.*[A-Z])|(?=.*\\W+))[0-9a-zA-Z\\W]{8,}$';
 
@@ -29,6 +35,10 @@ export class RegisterComponent implements OnInit {
   get password() {
     return this.form.get('password');
   }
+
+  constructor(private service: HttpAuthRegService,
+              private router: Router,
+              public snackBar: MatSnackBar) { }
 
   getErrorMessage(type: string) {
     switch (type) {
@@ -57,7 +67,29 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  registration() {
+    this.user.name = this.name.value;
+    this.user.email = this.email.value;
+    this.user.phone = this.phone.value;
+    this.user.password = this.password.value;
+    this.service.registration(this.user).subscribe(
+      resolve => {
+        this.openSnackBar(resolve.toString());
+        this.router.navigate(['authorization']);
+      }
+      ,
+      error => {
+        alert(error);
+        this.email.setValue('');
+        this.password.setValue('');
+      }
+    );
+  }
+  openSnackBar(message: string) {
+    this.snackBar.open(message,  null, {
+      duration: 2000,
+    });
+  }
 
   ngOnInit() {
   }

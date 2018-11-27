@@ -13,7 +13,7 @@ import {
 } from '@angular/material';
 import {TruncatePipePipe} from './Pipe/truncate-pipe.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import { ScrollingModule} from '@angular/cdk/scrolling';
 
 const materialModule = [
   MatIconModule,
@@ -29,7 +29,7 @@ const materialModule = [
   MatInputModule,
   MatSelectModule,
   MatSidenavModule,
-  ScrollDispatchModule,
+  ScrollingModule,
 ];
 
 @NgModule({

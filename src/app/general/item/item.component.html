@@ -4,7 +4,7 @@
       <mat-toolbar color="primary" class="custom-toolbar">
         <mat-toolbar-row>
           <div class="item-card__header">
-            <span>{{item+1}}</span>
+            <span>{{item.title | truncatePipe:[15]}}</span>
             <div>
               <mat-icon>mode_edit</mat-icon>
               <mat-icon color="warn">delete_forever</mat-icon>
@@ -13,10 +13,13 @@
         </mat-toolbar-row>
       </mat-toolbar>
     </mat-card-title>
-    <img class="item-card__img" src="https://img.grouponcdn.com/deal/jaSuZT7oxkai5XziRxWW/V3-4272x2823/v1/c700x420.jpg" alt="" >
+    <img class="item-card__img" *ngIf="item.img; else defaultImg" [src]="item.img" alt="photo">
+    <ng-template #defaultImg>
+      <img class="item-card__img" src="https://img.grouponcdn.com/deal/jaSuZT7oxkai5XziRxWW/V3-4272x2823/v1/c700x420.jpg" alt="" >
+    </ng-template>
     <mat-card-content class="item-card__description">
       <p>
-        {{text | truncatePipe:[100]}}
+        {{item.description | truncatePipe:[100]}}
       </p>
     </mat-card-content>
     <mat-divider></mat-divider>
@@ -28,7 +31,7 @@
         </div>
         <div>
           <mat-icon>date_range</mat-icon>
-          <span>16.12.2015</span>
+          <span>{{item.date}}</span>
         </div>
       </div>
     </mat-card-footer>

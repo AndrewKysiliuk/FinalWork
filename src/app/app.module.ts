@@ -11,10 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { GeneralModule } from './general/general.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthorizationComponent } from './user/authorization/authorization.component';
-import { RegisterComponent } from './user/register/register.component';
+import { RegistrationComponent } from './user/registration/registration.component';
 import { AppRoutingModule } from './routers/app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import {AuthRegService} from './Services/auth-reg.service';
+import {HttpAuthRegService} from './Services/http-auth-reg.service';
+import {AuthRegGuard} from './Guards/auth-reg.guard';
+import {HomeGuard} from './Guards/home.guard';
 
 registerLocaleData(localeUk, 'uk');
 
@@ -22,7 +24,7 @@ registerLocaleData(localeUk, 'uk');
   declarations: [
     AppComponent,
     AuthorizationComponent,
-    RegisterComponent,
+    RegistrationComponent,
     PageNotFoundComponent,
   ],
   imports: [
@@ -33,7 +35,7 @@ registerLocaleData(localeUk, 'uk');
     BrowserAnimationsModule,
     AppRoutingModule,
   ],
-  providers: [HttpClientService, AuthService, AuthRegService, ],
+  providers: [HttpClientService, AuthService, HttpAuthRegService, AuthRegGuard, HomeGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

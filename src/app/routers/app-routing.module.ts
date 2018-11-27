@@ -2,26 +2,24 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from '../page-not-found/page-not-found.component';
 import {AuthorizationComponent} from '../user/authorization/authorization.component';
-import {GeneralComponent} from '../general/general.component';
-import {RegisterComponent} from '../user/register/register.component';
+import {RegistrationComponent} from '../user/registration/registration.component';
+import {AuthRegGuard} from '../Guards/auth-reg.guard';
 
 const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'authorization'
+    redirectTo: 'home'
   },
   {
     path: 'authorization',
+    canActivate: [AuthRegGuard],
     component: AuthorizationComponent
   },
   {
     path: 'registration',
-    component: RegisterComponent
-  },
-  {
-    path: 'home',
-    component: GeneralComponent
+    canActivate: [AuthRegGuard],
+    component: RegistrationComponent
   },
   {
     path: '**',

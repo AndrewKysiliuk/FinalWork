@@ -27,6 +27,7 @@ import { GeneralRoutingModule } from '../routers/general-routing.module';
     ItemComponent,
     ItemCreateComponent,
     ItemPageComponent,
+    ItemListComponent,
     GeneralComponent,
   ]
 })

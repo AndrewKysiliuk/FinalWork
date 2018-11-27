@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router} from '@angular/router';
-import { AuthRegService } from '../../Services/auth-reg.service';
+import { HttpAuthRegService } from '../../Services/http-auth-reg.service';
+import {AuthService} from '../../Services/auth.service';
 
 @Component({
   selector: 'app-authorization',
   templateUrl: './authorization.component.html',
   styleUrls: ['./authorization.component.less']
 })
-export class AuthorizationComponent implements OnInit {
+export class AuthorizationComponent {
 
   form = new FormGroup({
     email : new FormControl('', [Validators.required, Validators.email]),
@@ -25,6 +26,10 @@ export class AuthorizationComponent implements OnInit {
     return this.form.get('pass');
   }
 
+  constructor(private router: Router,
+              private service: HttpAuthRegService,
+              private  as: AuthService) { }
+
   getErrorMessage(type: string) {
     if (type === 'mail') {
       return this.email.hasError('required') ? 'Поле Email обов\'язкове' :
@@ -35,12 +40,10 @@ export class AuthorizationComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router,
-              private service: AuthRegService) { }
-
   authorization() {
     this.service .authorization({'email': this.email.value, 'password': this.pass.value}).subscribe(
       res => {
+        this.as.create(res.toString());
         this.router.navigate([`home`]);
         },
       err => {
@@ -60,9 +63,6 @@ export class AuthorizationComponent implements OnInit {
         }
       }
       );
-  }
-
-  ngOnInit() {
   }
 
 }

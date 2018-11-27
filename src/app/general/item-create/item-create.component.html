@@ -1,8 +1,9 @@
+<app-header></app-header>
 <div class="container">
   <div class="item-title">
     <div class="item-title__image">
       <div class="image__item">
-        <img  src="../../../assets/default_img.svg" alt="">
+        <img  [src]="recipe.img" alt="">
       </div>
       <button mat-raised-button color="primary">Додати фото</button>
     </div>
@@ -10,47 +11,47 @@
       <form class="info__param" #titleForm = "ngForm">
         <mat-form-field appearance="standard" class="custom-field">
           <mat-label>Назва рецепту</mat-label>
-          <input matInput placeholder="Рецепт" [formControl]="title" required>
+          <input matInput placeholder="Рецепт" [(ngModel)]="recipe.title" [formControl]="title" required>
           <mat-error *ngIf="title.invalid">{{getErrorMessage("title")}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="standard" class="custom-field">
-          <mat-select placeholder="Категорія рецепту" [(ngModel)]="itemCategory" name="food" required>
-            <mat-option *ngFor="let item of category" [value]="item">
-              {{item}}
+          <mat-select placeholder="Категорія рецепту" [(ngModel)]="itemCategory" name="food" [formControl]="select" required>
+            <mat-option *ngFor="let item of category" [value]="item.category">
+              {{item.title}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="title.invalid">{{getErrorMessage("select")}}</mat-error>
+          <mat-error *ngIf="select.invalid">{{getErrorMessage("titleSelect")}}</mat-error>
         </mat-form-field>
       </form>
       <div class="info__components">
         <h1>Інгредієнти:</h1>
         <form class="components__form" #componentForm = "ngForm">
-          <div *ngFor ="let item of component; index as i" class="form__input">
+          <div *ngFor ="let item of recipe.component; let i = index" class="form__input">
             <div>
               <mat-form-field appearance="standard">
                 <mat-label>Інгредієнт</mat-label>
-                <input matInput placeholder="Інгредієнт" [(ngModel)]="item.name" [name]='"name"+i' required>
-                <mat-error *ngIf="title.invalid">{{getErrorMessage("title")}}</mat-error>
+                <input matInput placeholder="Інгредієнт" [(ngModel)]="item.name" [formControl]="componentTitle[i]" [name]='"name"+i' required>
+                <mat-error *ngIf="componentTitle[i].invalid">{{getErrorMessage("componentTitle",i)}}</mat-error>
               </mat-form-field>
             </div>
             <div>
               <mat-form-field appearance="standard">
                 <mat-label>К-сть</mat-label>
-                <input type="number" matInput placeholder="К-сть" [(ngModel)]="item.count" [name]='"count"+i' required>
-                <mat-error *ngIf="title.invalid">{{getErrorMessage("count")}}</mat-error>
+                <input type="number" matInput placeholder="К-сть" [(ngModel)]="item.count" [formControl]="componentCount[i]" [name]='"count"+i' required>
+                <mat-error *ngIf="componentCount[i].invalid">{{getErrorMessage("count", i)}}</mat-error>
               </mat-form-field>
             </div>
             <div>
               <mat-form-field appearance="standard">
-                <mat-select placeholder="Од. Вим." [(ngModel)]="item.type" name="food" required>
+                <mat-select placeholder="Од. Вим." [(ngModel)]="item.type" name="food" [formControl]="componentType[i]" required>
                   <mat-option *ngFor="let food of types" [value]="food">
                     {{food}}
                   </mat-option>
                 </mat-select>
-                <mat-error *ngIf="title.invalid">{{getErrorMessage("select")}}</mat-error>
+                <mat-error *ngIf="componentType[i].invalid">{{getErrorMessage("select", i)}}</mat-error>
               </mat-form-field>
             </div>
-            <button [disabled]="component.length < 2" mat-button color="warn" (click)="delTemplate('component', i)">
+            <button [disabled]="recipe.component.length < 2" mat-button color="warn" (click)="delTemplate('component', i)">
               <mat-icon>clear</mat-icon>
             </button>
           </div>
@@ -63,9 +64,9 @@
   <div class="item-content">
     <h1>Спосіб приготування:</h1>
     <form class="content__form" #prepareForm = "ngForm">
-      <div *ngFor ="let item of prepare; index as i" class="form__data">
+      <div *ngFor ="let item of recipe.prepare; index as i" class="form__data">
         <div>
-          <img *ngIf="!item.url" src="../../../assets/default_img.svg" alt="">
+          <img src="../../../assets/default_img.svg" alt="photo">
         </div>
         <div>
           <mat-form-field>
@@ -74,7 +75,7 @@
           </mat-form-field>
         </div>
         <div>
-          <button [disabled]="prepare.length < 2" mat-button color="warn" (click)="delTemplate('prepare', i)">
+          <button [disabled]="recipe.prepare.length < 2" mat-button color="warn" (click)="delTemplate('prepare', i)">
             <mat-icon>clear</mat-icon>
           </button>
         </div>
@@ -84,12 +85,13 @@
     <div class="description">
       <form class="description__text" #decrForm = 'ngForm'>
         <mat-form-field>
-          <textarea matInput placeholder="Опишіть страву..." [(ngModel)]="description" name="description" required></textarea>
+          <textarea matInput placeholder="Опишіть страву..." [(ngModel)]="recipe.description" name="description" required></textarea>
           <mat-error *ngIf="title.invalid">{{getErrorMessage("title")}}</mat-error>
         </mat-form-field>
       </form>
       <div class="description__button">
-        <button [disabled]="prepareForm.invalid || componentForm.invalid || titleForm.invalid || decrForm.invalid" mat-raised-button color="primary">
+        <button [disabled]="prepareForm.invalid || componentForm.invalid || titleForm.invalid || decrForm.invalid" mat-raised-button color="primary"
+        (click)="save()">
           Зберегти новий рецепт
         </button>
         <button mat-raised-button color="warn">Скасувати</button>
